@@ -79,10 +79,12 @@ jobs:
             platform: linux
             target: mips64-unknown-linux-muslabi64
             container: messense/rust-musl-cross:mips64-muslabi64
+            interpreter: 3.10 3.11
           - os: ubuntu
             platform: linux
             target: mips64el-unknown-linux-muslabi64
             container: messense/rust-musl-cross:mips64el-muslabi64
+            interpreter: 3.10 3.11
         exclude:
           # Windows on arm64 only supports Python 3.11+
           - os: windows
