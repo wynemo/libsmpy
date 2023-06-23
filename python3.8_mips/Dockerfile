@@ -2,7 +2,8 @@ from lpenz/debian-bookworm-mips64el as builder
 
 WORKDIR /
 
-# run apt-get update && apt-get upgrade -y 
+run apt-get update
+# run apt-get upgrade -y 
 # install rust
 run apt-get install -y curl
 run curl https://sh.rustup.rs -sSf | sh -s -- -y
