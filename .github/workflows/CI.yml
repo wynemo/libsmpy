@@ -98,10 +98,7 @@ jobs:
           python-version: '3.11'
           architecture: ${{ matrix.python-architecture || 'x64' }}
 
-      - run: pip install -U twine 'black>=22.3.0,<23' typing_extensions
-
-      # generate self-schema now, so we don't have to do so inside docker in maturin build
-      - run: python generate_self_schema.py
+      - run: pip install -U twine
 
       - name: build sdist
         if: ${{ matrix.os == 'ubuntu' && matrix.target == 'x86_64' && matrix.manylinux == 'auto' }}
