@@ -2,7 +2,7 @@ from lpenz/debian-bookworm-mips64el as builder
 
 WORKDIR /
 
-run apt-get update && apt-get upgrade 
+run apt-get update && apt-get upgrade -y 
 # install rust
 run curl https://sh.rustup.rs -sSf | sh -s -- -y
 # install python
