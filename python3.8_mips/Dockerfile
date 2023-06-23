@@ -4,6 +4,7 @@ WORKDIR /
 
 # run apt-get update && apt-get upgrade -y 
 # install rust
+run apt-get install curl
 run curl https://sh.rustup.rs -sSf | sh -s -- -y
 # install python
 # run apt-get install -y wget build-essential libreadline-dev libssl-dev libsqlite3-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev
