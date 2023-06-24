@@ -13,5 +13,5 @@ run wget https://www.python.org/ftp/python/3.8.11/Python-3.8.11.tgz
 run tar zxf Python-3.8.11.tgz
 run cd Python-3.8.11 && ./configure --enable-optimizations && make && make install
 run python3.8 -m venv venv
-run /venv/bin/python -m pip install maturin
-run /venv/bin/maturin build
+# run /venv/bin/python -m pip install maturin
+# run /venv/bin/maturin build
