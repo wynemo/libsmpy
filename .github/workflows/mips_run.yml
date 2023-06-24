@@ -43,4 +43,4 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - run: docker run ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;/venv/bin/python -m pip install maturin"
+      - run: docker run ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;/venv/bin/python -m pip install maturin;/venv/bin/maturin build"
