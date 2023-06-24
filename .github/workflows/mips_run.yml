@@ -44,28 +44,17 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - run: mkdir -p $PWD/dist
-      - run: docker run -v $PWD/dist:/dist ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;/venv/bin/python -m pip wheel -w /dist sqlalchemy ;ls -l /dist"
+      - run: docker run -v $PWD/dist:/dist ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;/venv/bin/python -m pip wheel -w /dist maturin; ls -l /dist"
       - run: ls -lh $PWD/dist/
       - uses: actions/upload-artifact@v3
         with:
           name: maturin_pip 
           path: dist
 
-      # - run: docker run -v dist:/dist ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;/venv/bin/python -m pip wheel -w /dist maturin"
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: maturin_pip 
-      #     path: dist
+      - run: docker run -v dist:/dist -v $PWD:/app/ ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;cd /dist;/venv/bin/python -m pip install maturin*.whl;cd /app/;/venv/bin/maturin build -r -o /dist"
+      - run: ls -lh dist/
 
-      # - uses: actions/download-artifact@v3
-      #   with:
-      #     name: maturin_pip 
-      #     path: dist
-
-      # - run: docker run -v dist:/dist -v $PWD:/app/ ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;cd /dist;/venv/bin/python -m pip install maturin*.whl;cd /app/;/venv/bin/maturin build -r -o /dist"
-      # - run: ls -lh dist/
-
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: mips_pypi_files
-      #     path: dist
+      - uses: actions/upload-artifact@v3
+        with:
+          name: mips_pypi_files
+          path: dist
