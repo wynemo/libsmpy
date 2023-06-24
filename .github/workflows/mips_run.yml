@@ -43,8 +43,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - run: docker run -v dist:/dist ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;/venv/bin/python -m pip wheel -w /dist sqlalchemy ;ls -l /dist"
-      - run: ls -lh dist/
+      - run: mkdir -p $PWD/dist
+      - run: docker run -v $PWD/dist:/dist ghcr.io/wynemo/mips_rust_python:master@sha256:ee23edb108a9bab823479efba9b0c7e8d31afd42f5c4341fce358b50da3fb09b bash -c "source ~/.cargo/env;/venv/bin/python -m pip wheel -w /dist sqlalchemy ;ls -l /dist"
+      - run: ls -lh $PWD/dist/
       - uses: actions/upload-artifact@v3
         with:
           name: maturin_pip 
